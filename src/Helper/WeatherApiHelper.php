@@ -2,10 +2,6 @@
 
 namespace App\Helper;
 
-use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
-use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
-use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
-use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -42,7 +38,38 @@ class WeatherApiHelper
 //        $statusCode = $weatherApiResponse->getStatusCode();
 //        $contentType = $weatherApiResponse->getHeaders()['content-type'][0];
 
-        return $weatherApiResponse->getContent();
+        $rawDataArray = $weatherApiResponse->toArray();
+
+        $weatherForecast = $this->organiseWeatherApiResponseForFrontendComponents($rawDataArray, $cities);
+
+        return $weatherForecast;
+    }
+
+    private function organiseWeatherApiResponseForFrontendComponents($rawDataArray, $cities)
+    {
+        $weatherApiHelperResponse = array();
+
+        $weatherApiHelperResponse['cities'] = $cities;
+        $weatherApiHelperResponse['currentWeather'] = $this->currentWeatherData($rawDataArray);
+        $weatherApiHelperResponse['threeDayOutlook'] = $this->threeDayOutlookData($rawDataArray);
+        $weatherApiHelperResponse['todayHourly'] = $this->todayHourlyData($rawDataArray);
+
+        return json_encode($weatherApiHelperResponse);
+    }
+
+    private function currentWeatherData($rawDataArray)
+    {
+        return $rawDataArray;
+    }
+
+    private function threeDayOutlookData($rawDataArray)
+    {
+        return $rawDataArray;
+    }
+
+    private function todayHourlyData($rawDataArray)
+    {
+        return $rawDataArray;
     }
 
 }
