@@ -16,15 +16,11 @@ class WeatherAppController extends AbstractController
         $this->weatherApiHelper = $weatherApiHelper;
     }
 
-    /**
-     * @throws \Exception
-     * @throws TransportExceptionInterface
-     */
-    #[Route('/api/test')]
-    public function number(): Response
+    #[Route('/api/forecast')]
+    public function getWeatherForecast(): Response
     {
         $weatherApiKey = $this->getParameter('weather_api_key');
-        $data = $this->weatherApiHelper->test($weatherApiKey);
+        $data = $this->weatherApiHelper->getCurrentAnd3DayForecastForAllCities($weatherApiKey);
 
         $response = new Response();
 

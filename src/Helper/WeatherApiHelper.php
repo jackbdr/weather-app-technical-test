@@ -21,14 +21,19 @@ class WeatherApiHelper
     /**
      * @throws TransportExceptionInterface
      */
-    public function test(string $weatherApiKey): string
+    public function getCurrentAnd3DayForecastForAllCities(string $weatherApiKey): string
     {
+        // Array of cities which, for scaling, could be formed by pulling cities from a DB
+        $cities = ['London', 'Paris', 'New York'];
+
+        $citiesForQuery = implode('|', $cities);
+
         $queryType = '/VisualCrossingWebServices/rest/services/timelinemulti';
 
         $weatherApiResponse = $this->scopedClient->request('GET', $queryType, [
             'query' => [
                 'key' => $weatherApiKey,
-                'locations' => 'London|Paris|New York',
+                'locations' => $citiesForQuery,
                 'datestart' => 'next3days',
                 'include' => 'hours,current'
             ]
@@ -36,8 +41,8 @@ class WeatherApiHelper
 
 //        $statusCode = $weatherApiResponse->getStatusCode();
 //        $contentType = $weatherApiResponse->getHeaders()['content-type'][0];
-        $weatherApiHelperResponse = $weatherApiResponse->getContent();
 
-        return $weatherApiHelperResponse;
+        return $weatherApiResponse->getContent();
     }
+
 }
