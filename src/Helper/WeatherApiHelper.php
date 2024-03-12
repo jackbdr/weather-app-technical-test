@@ -80,10 +80,10 @@ class WeatherApiHelper
     private function threeDayOutlookData($location, $threeDayOutlook): array
     {
         // Remove today's data as we do not include this in threeDayOutlook
-        array_unshift($location->days);
+        array_shift($location->days);
 
         foreach($location->days as $day){
-            $threeDayOutlook[$location->address] = array(
+            $threeDayOutlook[$location->address][] = array(
                 'date' => date('l\, jS F Y', $day->datetimeEpoch),
                 'tempMin' => $this->fahrenheitToCelius($day->tempmin) . '°C',
                 'tempMax' => $this->fahrenheitToCelius($day->tempmax) . '°C',
@@ -117,7 +117,7 @@ class WeatherApiHelper
 
     function windCardinal($deg): array|string
     {
-        // Just in case we don't find a cardinal, show degree!
+        // Default to show wind direction in degrees
         $cardinal = $deg . '°C';
 
         $cardinalDirections = array(
