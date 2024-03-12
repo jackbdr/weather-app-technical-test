@@ -1,9 +1,11 @@
+import WeatherIcon from "./WeatherIcon.jsx";
+
 function OneHour(props) {
     return (
-        <div className="resource">
-            <p>{props.city} time -> {props.time}</p>
-            <p>{props.city} temp -> {props.temp}</p>
-            <p>{props.city} icon -> {props.icon}</p>
+        <div className='one-hour-data'>
+            <p className='data-display-x-small-grey'>{props.time}</p>
+            <WeatherIcon iconText={props.icon} />
+            <p className='data-display-x-small-black'>{props.temp}</p>
         </div>
     );
 }

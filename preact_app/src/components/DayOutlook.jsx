@@ -1,10 +1,20 @@
+import WeatherIcon from "./WeatherIcon.jsx";
+
 function DayOutlook(props) {
     return (
-        <div className="resource">
-            <p>{props.city} date -> {props.date}</p>
-            <p>{props.city} tempMax -> {props.tempMax}</p>
-            <p>{props.city} tempMin -> {props.tempMin}</p>
-            <p>{props.city} icon -> {props.icon}</p>
+        <div className='day-outlook'>
+            <p className='data-label'>{props.date}</p>
+            <div className='day-outlook-data'>
+                <WeatherIcon iconText={props.icon} />
+                <div className='min-temp'>
+                    <p className='data-label-black'>Min</p>
+                    <p className='data-display-medium'>{props.tempMin}</p>
+                </div>
+                <div className='max-temp'>
+                    <p className='data-label-bold'>Max</p>
+                    <p className='data-display-medium'>{props.tempMax}</p>
+                </div>
+            </div>
         </div>
     );
 }

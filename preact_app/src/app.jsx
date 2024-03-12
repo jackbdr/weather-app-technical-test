@@ -6,9 +6,9 @@ import axios from 'axios';
 import CurrentWeather from './components/CurrentWeather.jsx';
 import ThreeDayOutlook from './components/ThreeDayOutlook.jsx';
 import TwentyFourHours from './components/TwentyFourHours.jsx';
-import ButtonGroup from "./components/ButtonGroup.jsx";
 
 import './app.scss';
+import Header from "./components/Header.jsx";
 
 export function App() {
 
@@ -40,6 +40,7 @@ export function App() {
 			})
 			.catch(err => {
 				setError(err.message);
+				setLoading(false)
 			});
 	}, [])
 
@@ -49,24 +50,27 @@ export function App() {
 	}
 
 	useEffect(() => {
-		setLocationCurrentData(allLocationsCurrentWeatherData[city])
-		setLocationThreeDayOutlookData(allLocationsThreeDayOutlookData[city])
-		setLocationTodayHourlyData(allLocationsTodayHourlyData[city])
+		// Check city has been set, to avoid type errors on first render
+		if (city) {
+			setLocationCurrentData(allLocationsCurrentWeatherData[city])
+			setLocationThreeDayOutlookData(allLocationsThreeDayOutlookData[city])
+			setLocationTodayHourlyData(allLocationsTodayHourlyData[city])
+		}
 	}, [city])
 
 	return (
-		<div>
+		<>
 			{error && <p className="text-danger">{error}</p>}
 			{loading && <p>Forecasting...</p>}
 			{ (!loading && !error) &&
-				<div>
-					<ButtonGroup cities={cities} handleCityChange={handleCityChange} />
+				<div className='site-container'>
+					<Header cities={cities} setCity={setCity} handleCityChange={handleCityChange} />
 					<CurrentWeather {...locationCurrentData} city={city} />
 					<ThreeDayOutlook  locationThreeDayOutlookData={locationThreeDayOutlookData} city={city} />
 					<TwentyFourHours locationTodayHourlyData={locationTodayHourlyData} city={city} />
 				</div>
 			}
-		</div>
+		</>
 	);
 }
 
