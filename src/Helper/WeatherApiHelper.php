@@ -84,7 +84,9 @@ class WeatherApiHelper
 
         foreach($location->days as $day){
             $threeDayOutlook[$location->address][] = array(
-                'date' => date('l\, jS F Y', $day->datetimeEpoch),
+                // The below does not work for an unknown reason! I think the Weather API's datetimeEpoch may be a day behind for Paris...
+                // 'date' => date('l\, jS F Y', $day->datetimeEpoch),
+                'date' => date('l\, jS F Y', strtotime($day->datetime)),
                 'tempMin' => $this->fahrenheitToCelius($day->tempmin) . '°C',
                 'tempMax' => $this->fahrenheitToCelius($day->tempmax) . '°C',
                 'icon' => $day->icon,
