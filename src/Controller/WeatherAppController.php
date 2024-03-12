@@ -22,10 +22,10 @@ class WeatherAppController extends AbstractController
         $weatherApiKey = $this->getParameter('weather_api_key');
         $data = $this->weatherApiHelper->getCurrentAnd3DayForecastForAllCities($weatherApiKey);
 
-//        $json = json_decode($data);
+        $json = json_decode($data);
 
 //        echo "<pre>";
-//        var_dump($json->locations);
+//        var_dump($json);
 //        echo "</pre>";
 
         $response = new Response();
