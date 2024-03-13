@@ -16,17 +16,20 @@ class WeatherAppController extends AbstractController
         $this->weatherApiHelper = $weatherApiHelper;
     }
 
+    /**
+     * @return Response
+     * @throws TransportExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
+     * Hit by Preact App.
+     * Returns all the data required, organised according to the different frontend components (e.g. "Current", "3 Day Outlook", "Hourly Forecast")
+     */
     #[Route('/api/forecast')]
     public function getWeatherForecast(): Response
     {
         $weatherApiKey = $this->getParameter('weather_api_key');
         $data = $this->weatherApiHelper->getCurrentAnd3DayForecastForAllCities($weatherApiKey);
-
-        $json = json_decode($data);
-
-//        echo "<pre>";
-//        var_dump($json);
-//        echo "</pre>";
 
         $response = new Response();
 
@@ -37,5 +40,4 @@ class WeatherAppController extends AbstractController
 
         return $response;
     }
-
 }
