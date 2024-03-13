@@ -2,7 +2,7 @@ function ButtonGroup(props) {
 
     return (
         <div className='button-group'>
-            {props.cities.map(city => <button id={city} className={'city-button' + (props.selectedCity === city ? '-selected' : '')} onClick={props.handleCityChange}>{city}</button> )}
+            {props.cities.map(city => <button id={city} className={(props.selectedCity === city ? 'city-button city-button-selected' : 'city-button')} onClick={props.handleCityChange}>{city}</button> )}
         </div>
     );
 }

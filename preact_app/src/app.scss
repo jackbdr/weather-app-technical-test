@@ -12,32 +12,38 @@ $box-shadow: rgba(140, 120, 120, 0.2) 0px 7px 29px 0px;
 /*
 * Variables for breakpoints
 */
-$ipad-mini-8-inch: 768px;
+$ipad-mini-8-inch: 744px;
 $laptop: 1024px;
 $macbook-pro-14-inch: 1512px;
 
-/*
-* Map for breakpoints
-*/
-$breakpoints: (
-        "medium": (
-                min-width: $ipad-mini-8-inch,
-        ),
-        "large": (
-                min-width: $laptop,
-        ),
-        "x-large": (
-                min-width: $macbook-pro-14-inch,
-        ),
-);
+///*
+//* Map for breakpoints
+//*/
+//$breakpoints: (
+//        "medium": (
+//                min-width: $ipad-mini-8-inch,
+//        ),
+//        "large": (
+//                min-width: $laptop,
+//        ),
+//        "x-large": (
+//                min-width: $macbook-pro-14-inch,
+//        ),
+//);
 
 /*
  * Mixins
  */
-@mixin responsive($size) {
-  $query: map-get($breakpoints, $size);
+//@mixin responsive($size) {
+//  $query: map-get($breakpoints, $size);
+//
+//  @media #{$query} {
+//    @content;
+//  }
+//}
 
-  @media #{$query} {
+@mixin responsive($query) {
+  @media ( min-width: $query ) {
     @content;
   }
 }
@@ -73,10 +79,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   width: 310px;
-  //height: 200vh;
   padding: 20px;
-  //width: 80%;
+  height: 200vh;
+  @include responsive($ipad-mini-8-inch) {
+    width: 600px;
+    padding: 50px;
+  }
 }
 
 
@@ -89,15 +99,27 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     .logo {
       width: 32px;
       height: 32px;
       margin-right: 8px;
+      @include responsive($ipad-mini-8-inch) {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+      }
     }
     .title {
       font-size: 145%;
       letter-spacing: 0.8px;
       margin: 0 0 0 8px;
+      @include responsive($ipad-mini-8-inch) {
+        font-size: 200%;
+      }
+    }
+    @include responsive($ipad-mini-8-inch) {
+      justify-content: left;
     }
   }
   .button-group {
@@ -113,15 +135,25 @@ body {
       margin-bottom: 10px;
       padding: 10px;
       cursor: pointer;
+      @include responsive($ipad-mini-8-inch) {
+        width: 25%;
+        font-size: 110%;
+        margin: 0 3%;
+      }
     }
     .city-button-selected {
       color: white;
-      border-radius: 30px;
       background-color: $button-active;
-      border: none;
-      margin-bottom: 10px;
-      padding: 10px;
-      cursor: pointer;
+    }
+    @include responsive($ipad-mini-8-inch) {
+      display: flex;
+      flex-direction: row;
+      .city-button:last-child {
+        margin: 0;
+      }
+      .city-button:first-child {
+        margin: 0;
+      }
     }
   }
 }
@@ -130,12 +162,13 @@ body {
   background-color: white;
   box-shadow: $box-shadow;
   border-radius: 16px;
+
   .label-data:not(:last-child) {
     margin-bottom: 10px;
   }
   .data-label {
     color: $text-grey;
-    font-size: 18px;
+    font-size: 16px;
     margin: 0;
   }
   .data-label-bold {
@@ -144,36 +177,59 @@ body {
     margin: 0;
   }
   .data-display-medium {
-    font-size: 170%;
+    font-size: 180%;
     font-weight: bold;
     margin: 0;
   }
   .data-display-large {
-    font-size: 240%;
+    font-size: 230%;
     font-weight: bold;
     margin: 0;
   }
   .current-weather-icon {
-    width: 25%;
-    height: 25%;
+    height: 57px;
     margin-right: 20px;
+  }
+  @include responsive($ipad-mini-8-inch) {
+    .data-display-sun {
+      font-size: 140%;
+    }
   }
 }
 
 .current-weather {
   width: 100%;
+  margin-bottom: 18%;
   .current-weather-data {
+    display: flex;
+    flex-direction: column;
     padding: 35px 38px;
     .temp-data {
       display: flex;
       align-items: center;
+    }
+    @include responsive($ipad-mini-8-inch) {
+      display: grid;
+      grid-template-columns: auto auto;
+      .label-data {
+        order: 1;
+      }
+      .wind {
+        order: 2;
+      }
+      .rain {
+        order: 3;
+      }
+      .sunrise-sunset {
+        order: 4;
+      }
     }
   }
 }
 
 .three-day-outlook {
   width: 100%;
-  height: 70vh;
+  margin-bottom: 3%;
   h3 {
     margin-top: 10%;
   }
@@ -201,10 +257,10 @@ body {
   }
 }
 
-// TODO Fix: on resize height, the twenty-four-hours div overlaps above elements
 .twenty-four-hours {
   width: 100%;
-  height: 30vh;
+  margin-bottom: 8%;
+
   .twenty-four-hours-data {
     display: flex;
     overflow-x: scroll;
