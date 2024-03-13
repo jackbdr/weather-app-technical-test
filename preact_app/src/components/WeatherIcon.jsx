@@ -10,7 +10,7 @@ function WeatherIcon(props) {
 
     return (
         <>
-            {props.iconText === 'sun' || props.iconText === 'sunny' ? <img src={sunny} className={props.iconType} alt='Weather Icon' /> :
+            {props.iconText === 'sun' || props.iconText === 'sunny' || props.iconText === 'clear-day' || props.iconText === 'clear' ? <img src={sunny} className={props.iconType} alt='Weather Icon' /> :
                 (props.iconText === 'rain' || props.iconText === 'rainy' ? <img src={rainy} className={props.iconType} alt='Weather Icon' />
                     : <img src={cloudy} className={props.iconType} alt='Weather Icon' />)}
         </>
