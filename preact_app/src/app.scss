@@ -1,10 +1,55 @@
+/*
+* Variables
+*/
+$background-color: #F8F8F8;
+$text-color: black;
+$text-grey: #808080;
+$scroll-color: #CFCFCF;
+$button-active: #017CFF;
+$button-inactive: #E8E8E8;
+$box-shadow: rgba(140, 120, 120, 0.2) 0px 7px 29px 0px;
+
+/*
+* Variables for breakpoints
+*/
+$ipad-mini-8-inch: 768px;
+$laptop: 1024px;
+$macbook-pro-14-inch: 1512px;
+
+/*
+* Map for breakpoints
+*/
+$breakpoints: (
+        "medium": (
+                min-width: $ipad-mini-8-inch,
+        ),
+        "large": (
+                min-width: $laptop,
+        ),
+        "x-large": (
+                min-width: $macbook-pro-14-inch,
+        ),
+);
+
+/*
+ * Mixins
+ */
+@mixin responsive($size) {
+  $query: map-get($breakpoints, $size);
+
+  @media #{$query} {
+    @content;
+  }
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
+
   line-height: 1.5;
   font-weight: 400;
 
   color: #222;
-  background-color: #ffffff;
+  background-color: $background-color;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -21,29 +66,189 @@ body {
 }
 
 #app {
-  max-width: 1280px;
   margin: 0 auto;
-  text-align: center;
 }
 
-section {
-  margin-top: 5rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 1.5rem;
+.site-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 310px;
+  //height: 200vh;
+  padding: 20px;
+  //width: 80%;
 }
 
-.resource {
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  text-align: left;
-  text-decoration: none;
-  color: #222;
-  background-color: #f1f1f1;
-  border: 1px solid transparent;
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  .logo-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .logo {
+      width: 32px;
+      height: 32px;
+      margin-right: 8px;
+    }
+    .title {
+      font-size: 145%;
+      letter-spacing: 0.8px;
+      margin: 0 0 0 8px;
+    }
+  }
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 5%;
+    .city-button {
+      color: $text-color;
+      border-radius: 30px;
+      background-color: $button-inactive;
+      border: none;
+      margin-bottom: 10px;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .city-button-selected {
+      color: white;
+      border-radius: 30px;
+      background-color: $button-active;
+      border: none;
+      margin-bottom: 10px;
+      padding: 10px;
+      cursor: pointer;
+    }
+  }
 }
 
-.resource:hover {
-  border: 1px solid #000;
-  box-shadow: 0 25px 50px -12px #673ab888;
+.data-container {
+  background-color: white;
+  box-shadow: $box-shadow;
+  border-radius: 16px;
+  .label-data:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  .data-label {
+    color: $text-grey;
+    font-size: 18px;
+    margin: 0;
+  }
+  .data-label-bold {
+    font-size: 95%;
+    font-weight: bold;
+    margin: 0;
+  }
+  .data-display-medium {
+    font-size: 170%;
+    font-weight: bold;
+    margin: 0;
+  }
+  .data-display-large {
+    font-size: 240%;
+    font-weight: bold;
+    margin: 0;
+  }
+  .current-weather-icon {
+    width: 25%;
+    height: 25%;
+    margin-right: 20px;
+  }
+}
+
+.current-weather {
+  width: 100%;
+  .current-weather-data {
+    padding: 35px 38px;
+    .temp-data {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.three-day-outlook {
+  width: 100%;
+  height: 70vh;
+  h3 {
+    margin-top: 10%;
+  }
+  .day-outlook {
+    padding: 20px;
+    .day-outlook-data {
+      display: flex;
+      align-items: center;
+      margin-top: 6%;
+      .day-outlook-icon {
+        width: 23%;
+        height: 23%;
+        margin-right: 15%;
+      }
+      .day-outlook-temp-data {
+        display: flex;
+        .min-temp {
+          margin-right: 24%;
+        }
+      }
+    }
+  }
+  .day-outlook:not(:last-child) {
+    margin-bottom: 6%;
+  }
+}
+
+// TODO Fix: on resize height, the twenty-four-hours div overlaps above elements
+.twenty-four-hours {
+  width: 100%;
+  height: 30vh;
+  .twenty-four-hours-data {
+    display: flex;
+    overflow-x: scroll;
+    .one-hour-data {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 6% 6% 6%;
+      .data-display-x-small-grey {
+        color: $text-grey;
+        font-size: 60%;
+        font-weight: bold;
+        margin-bottom: 8%;
+      }
+      .one-hour-icon {
+        width: 50px;
+        height: 50px;
+      }
+      .data-display-x-small-black {
+        font-size: 65%;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+/*
+* Scrollbar styling
+ */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  &-track {
+    //border: 1px solid $scroll-color;
+    border-radius: 5px;
+    outline: 1px solid $scroll-color;
+    outline-offset: 1px;
+  }
+  &-thumb {
+    background: $scroll-color;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    &:hover {
+      background: #555;
+    }
+  }
 }

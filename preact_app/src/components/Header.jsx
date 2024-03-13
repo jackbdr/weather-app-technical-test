@@ -5,10 +5,10 @@ function Header(props) {
     return (
         <div className='header'>
             <div className='logo-title'>
-                <img src={logo} alt='Weather App logo' />
-                <h1>TMPR Weather</h1>
+                <img className='logo' src={logo} alt='Weather App logo' />
+                <h1 className='title'>TMPR Weather</h1>
             </div>
-            <ButtonGroup cities={props.cities} handleCityChange={props.handleCityChange} />
+            <ButtonGroup selectedCity={props.city} cities={props.cities} handleCityChange={props.handleCityChange} />
         </div>
     );
 }

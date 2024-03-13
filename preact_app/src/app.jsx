@@ -64,7 +64,7 @@ export function App() {
 			{loading && <p>Forecasting...</p>}
 			{ (!loading && !error) &&
 				<div className='site-container'>
-					<Header cities={cities} setCity={setCity} handleCityChange={handleCityChange} />
+					<Header city={city} cities={cities} setCity={setCity} handleCityChange={handleCityChange} />
 					<CurrentWeather {...locationCurrentData} city={city} />
 					<ThreeDayOutlook  locationThreeDayOutlookData={locationThreeDayOutlookData} city={city} />
 					<TwentyFourHours locationTodayHourlyData={locationTodayHourlyData} city={city} />

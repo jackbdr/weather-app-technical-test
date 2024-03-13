@@ -1,7 +1,8 @@
 function ButtonGroup(props) {
+
     return (
-        <div>
-            {props.cities.map(city => <button id={city} onClick={props.handleCityChange}>{city}</button> )}
+        <div className='button-group'>
+            {props.cities.map(city => <button id={city} className={'city-button' + (props.selectedCity === city ? '-selected' : '')} onClick={props.handleCityChange}>{city}</button> )}
         </div>
     );
 }
