@@ -35,10 +35,6 @@ class WeatherApiHelper
             ]
         ]);
 
-//        $statusCode = $weatherApiResponse->getStatusCode();
-//        $contentType = $weatherApiResponse->getHeaders()['content-type'][0];
-
-//        $rawData = $weatherApiResponse->toArray();
         $rawData = json_decode($weatherApiResponse->getContent());
 
         return $this->organiseWeatherApiResponseForFrontendComponents($rawData, $cities);
