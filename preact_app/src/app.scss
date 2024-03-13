@@ -1,3 +1,6 @@
+// TODO Cleanup
+// At the moment, mixins are all over the place. Need to organise the use of mixins.
+
 /*
 * Variables
 */
@@ -79,7 +82,9 @@ body {
   }
 }
 
-
+/*
+Page header
+ */
 .header {
   display: flex;
   flex-direction: column;
@@ -166,6 +171,9 @@ body {
   }
 }
 
+/*
+Common Data container
+ */
 .data-container {
   background-color: white;
   box-shadow: $box-shadow;
@@ -224,6 +232,9 @@ body {
   }
 }
 
+/*
+Current weather
+ */
 .current-weather {
   width: 100%;
   margin-bottom: 18%;
@@ -275,6 +286,9 @@ body {
   }
 }
 
+/*
+Three day forecast
+ */
 .three-day-outlook {
   width: 100%;
   margin-bottom: 3%;
@@ -337,6 +351,9 @@ body {
   }
 }
 
+/*
+Today's forecast hour by hour
+ */
 .twenty-four-hours {
   width: 100%;
   margin-bottom: 8%;
