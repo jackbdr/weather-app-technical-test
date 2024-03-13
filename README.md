@@ -1,3 +1,27 @@
+Hi there,
+
+Thank you for this! Being used to Laravel, I have enjoyed getting to know Symfony... I like it! 
+Also, I hadn't heard of Preact before but I thought it worked well for this task. I thought React seemed a bit overkill.
+
+To run the application please run the following commands from the root directory:
+```
+cp .env.starter .env
+composer install
+symfony server:start
+```
+Then in a second terminal:
+```
+cd preact_app
+npm install
+npm run dev
+```
+
+You should then be able to access the preact_app at "http://127.0.0.1:5173/".
+
+I'd be really interested to hear what your thoughts about my submission are and to hear about in what other ways it could have been completed would be very interesting.
+
+Thank you!
+
 # Weather App Technical Test
 
 ## Objective

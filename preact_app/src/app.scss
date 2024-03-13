@@ -1,0 +1,436 @@
+// TODO Cleanup
+// At the moment, mixins are all over the place. Need to organise the use of mixins.
+
+/*
+* Variables
+*/
+$background-color: #F8F8F8;
+$text-color: black;
+$text-grey: #808080;
+$scroll-color: #CFCFCF;
+$button-active: #017CFF;
+$button-inactive: #E8E8E8;
+$box-shadow: rgba(140, 120, 120, 0.2) 0px 7px 29px 0px;
+
+/*
+* Breakpoints
+*/
+$ipad-mini-8-inch: 744px;
+$laptop: 1024px;
+$macbook-pro-14-inch: 1512px;
+
+@mixin responsive($query) {
+  @media ( min-width: $query ) {
+    @content;
+  }
+}
+
+:root {
+  font-family: 'Open Sans', sans-serif;
+
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: #222;
+  background-color: $background-color;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#app {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.site-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 310px;
+  padding: 20px;
+  height: 200vh;
+  @include responsive($ipad-mini-8-inch) {
+    width: 600px;
+    padding: 50px;
+    justify-content: left;
+    height: 140vh;
+    .section-label {
+      margin-top: 8%;
+    }
+  }
+  @include responsive($laptop) {
+    height: fit-content;
+    width: 1000px;
+    //justify-content: space-between;
+    .section-label {
+      margin-top: 3%;
+    }
+  }
+}
+
+/*
+Page header
+ */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  .logo-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    .logo {
+      width: 32px;
+      height: 32px;
+      margin-right: 8px;
+      @include responsive($ipad-mini-8-inch) {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+      }
+      @include responsive($laptop) {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    .title {
+      font-size: 145%;
+      letter-spacing: 0.8px;
+      margin: 0 0 0 8px;
+      @include responsive($ipad-mini-8-inch) {
+        font-size: 200%;
+      }
+      @include responsive($laptop) {
+        font-size: 170%;
+      }
+    }
+    @include responsive($ipad-mini-8-inch) {
+      justify-content: left;
+    }
+  }
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 5%;
+    .city-button {
+      color: $text-color;
+      border-radius: 30px;
+      background-color: $button-inactive;
+      border: none;
+      margin-bottom: 10px;
+      padding: 10px;
+      cursor: pointer;
+      @include responsive($ipad-mini-8-inch) {
+        width: 25%;
+        font-size: 110%;
+        margin: 0 3%;
+      }
+      @include responsive($laptop) {
+        width: 20%;
+        font-size: 100%;
+      }
+    }
+    .city-button-selected {
+      color: white;
+      background-color: $button-active;
+    }
+    @include responsive($ipad-mini-8-inch) {
+      display: flex;
+      flex-direction: row;
+      .city-button:last-child {
+        margin: 0;
+      }
+      .city-button:first-child {
+        margin: 0;
+      }
+    }
+  }
+  @include responsive($laptop) {
+    flex-direction: row;
+    .button-group {
+      margin-top: 0;
+      justify-content: end;
+    }
+  }
+}
+
+/*
+Common Data container
+ */
+.data-container {
+  background-color: white;
+  box-shadow: $box-shadow;
+  border-radius: 16px;
+
+  .label-data:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  .data-label {
+    color: $text-grey;
+    font-size: 16px;
+    margin: 0;
+    @include responsive($ipad-mini-8-inch) {
+      font-size: 18px;
+    }
+    @include responsive($laptop) {
+      font-size: 14px;
+    }
+  }
+  .data-label-bold {
+    font-size: 95%;
+    font-weight: bold;
+    margin: 0;
+    @include responsive($laptop) {
+      font-size: 80%;
+    }
+  }
+  .data-display-medium {
+    font-size: 180%;
+    font-weight: bold;
+    margin: 0;
+    @include responsive($ipad-mini-8-inch) {
+      font-size: 210%;
+    }
+    @include responsive($laptop) {
+      font-size: 160%;
+    }
+  }
+  .data-display-large {
+    font-size: 230%;
+    font-weight: bold;
+    margin: 0;
+    @include responsive($laptop) {
+      font-size: 190%;
+      white-space: nowrap;
+    }
+  }
+  .current-weather-icon {
+    height: 57px;
+    margin-right: 20px;
+  }
+  @include responsive($ipad-mini-8-inch) {
+    .data-display-sun {
+      font-size: 140%;
+    }
+  }
+}
+
+/*
+Current weather
+ */
+.current-weather {
+  width: 100%;
+  margin-bottom: 18%;
+  .current-weather-data {
+    display: flex;
+    flex-direction: column;
+    padding: 35px 38px;
+    .temp-data {
+      display: flex;
+      align-items: center;
+    }
+    @include responsive($ipad-mini-8-inch) {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      .label-data {
+        order: 1;
+        width: 100%;
+      }
+      .wind {
+        order: 2;
+      }
+      .rain {
+        order: 3;
+      }
+      .sunrise-sunset {
+        order: 4;
+      }
+    }
+  }
+  @include responsive($ipad-mini-8-inch) {
+    margin-bottom: 2%;
+  }
+  @include responsive($laptop) {
+    margin-bottom: 0;
+    .current-weather-data {
+      display: flex;
+      flex-direction: row;
+      padding: 35px 50px;
+      .wind {
+        order: 3;
+      }
+      .rain {
+        order: 2;
+      }
+      .sunrise-sunset {
+        order: 4;
+      }
+    }
+  }
+}
+
+/*
+Three day forecast
+ */
+.three-day-outlook {
+  width: 100%;
+  margin-bottom: 3%;
+  h3 {
+    margin-top: 10%;
+  }
+  .day-outlook {
+    padding: 20px;
+    .day-outlook-data {
+      display: flex;
+      align-items: center;
+      margin-top: 6%;
+      .day-outlook-icon {
+        width: 23%;
+        height: 23%;
+        margin-right: 15%;
+        @include responsive($ipad-mini-8-inch) {
+          width: 18%;
+          height: 18%;
+          margin-right: 8%;
+        }
+      }
+      .day-outlook-temp-data {
+        display: flex;
+        .min-temp {
+          margin-right: 24%;
+        }
+        @include responsive($laptop) {
+          .min-temp {
+           width: 80px;
+          }
+          .max-temp {
+            width: 80px;
+          }
+        }
+      }
+    }
+    @include responsive($ipad-mini-8-inch) {
+      padding: 30px;
+      .day-outlook-data {
+        margin-top: 3%;
+      }
+    }
+  }
+  .day-outlook:not(:last-child) {
+    margin-bottom: 6%;
+  }
+  @include responsive($laptop) {
+    margin-bottom: 0;
+    .three-days-container {
+      display: flex;
+      justify-content: space-between;
+      .day-outlook {
+        width: 25%;
+      }
+      .day-outlook:not(:last-child) {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+/*
+Today's forecast hour by hour
+ */
+.twenty-four-hours {
+  width: 100%;
+  margin-bottom: 8%;
+  .twenty-four-hours-data {
+    display: flex;
+    overflow-x: scroll;
+    .one-hour-data {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 6% 6% 6%;
+      .data-display-x-small-grey {
+        color: $text-grey;
+        font-size: 60%;
+        font-weight: bold;
+        margin-bottom: 8%;
+      }
+      .one-hour-icon {
+        width: 50px;
+        height: 50px;
+      }
+      .data-display-x-small-black {
+        font-size: 65%;
+        font-weight: bold;
+      }
+    }
+    @include responsive($ipad-mini-8-inch) {
+      .one-hour-data {
+        .data-display-x-small-grey {
+          font-size: 14px;
+          margin-bottom: 14%;
+        }
+        .data-display-x-small-black {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  @include responsive($laptop) {
+    margin-bottom: 0;
+    .twenty-four-hours-data {
+      .one-hour-data {
+        margin: 0 3% 0 3%;
+        .data-display-x-small-grey {
+          font-size: 14px;
+          margin-bottom: 14%;
+        }
+        .data-display-x-small-black {
+          font-size: 16px;
+        }
+        .one-hour-icon {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+  }
+}
+
+/*
+* Scrollbar styling
+ */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  &-track {
+    //border: 1px solid $scroll-color;
+    border-radius: 5px;
+    outline: 1px solid $scroll-color;
+    outline-offset: 1px;
+  }
+  &-thumb {
+    background: $scroll-color;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    &:hover {
+      background: #555;
+    }
+  }
+}
