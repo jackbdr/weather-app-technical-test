@@ -26,9 +26,9 @@ I'm looking forward to hopefully speaking. I'd be really interested to hear your
 Thank you!
 
 Notes:
-- Ideally I will find time to better organise my scss into components. Also, sort out my use of mixins which is chaotic at the moment.
+- Ideally I will find time to better organise my scss into components. Also, reorganise my use of mixins to be clearer and easier to follow.
 - I considered automatically refreshing the page every 15 mins or so but I decided against it as I didn't want to accidentally leave it running over night and run out of API requests.
-- I've noticed that safari doesn't like a "justify-content: end" on the laptop view buttons which I haven't fixed yet.
+- I've noticed that Safari doesn't like a "justify-content: end" on the laptop view buttons which I haven't fixed yet. Chrome and Firefox okay though.
 
 # Weather App Technical Test
 
