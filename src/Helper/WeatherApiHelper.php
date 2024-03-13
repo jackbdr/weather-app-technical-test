@@ -15,7 +15,13 @@ class WeatherApiHelper
     }
 
     /**
+     * @param string $weatherApiKey
+     * @return string
      * @throws TransportExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
+     * Returns all the data required, organised according to the different frontend components (e.g. "Current", "3 Day Outlook", "Hourly Forecast")
      */
     public function getCurrentAnd3DayForecastForAllCities(string $weatherApiKey): string
     {
@@ -40,6 +46,14 @@ class WeatherApiHelper
         return $this->organiseWeatherApiResponseForFrontendComponents($rawData, $cities);
     }
 
+    /**
+     * @param $rawData
+     * @param $cities
+     * @return false|string
+     * Loops through the Weather API's response.
+     * Extract the required data from each location and key it by the frontend component name.
+     * e.g. to access the current forecast for "Paris": $weatherApiHelperResponse['currentWeather']['Paris']
+     */
     private function organiseWeatherApiResponseForFrontendComponents($rawData, $cities)
     {
         $weatherApiHelperResponse = array();
@@ -58,6 +72,12 @@ class WeatherApiHelper
         return json_encode($weatherApiHelperResponse);
     }
 
+    /**
+     * @param $location
+     * @param $currentWeather
+     * @return array
+     * Extracts the "Current" forecast from a location.
+     */
     private function currentWeatherData($location, $currentWeather): array
     {
         $currentWeather[$location->address] = array(
@@ -73,6 +93,12 @@ class WeatherApiHelper
         return $currentWeather;
     }
 
+    /**
+     * @param $location
+     * @param $threeDayOutlook
+     * @return array
+     * Extracts the "3 Day Outlook" from a location.
+     */
     private function threeDayOutlookData($location, $threeDayOutlook): array
     {
         // Remove today's data as we do not include this in threeDayOutlook
@@ -92,6 +118,12 @@ class WeatherApiHelper
         return $threeDayOutlook;
     }
 
+    /**
+     * @param $location
+     * @param $todayHourly
+     * @return array
+     * Extracts the "Hourly Forecast" from a location.
+     */
     private function todayHourlyData($location, $todayHourly): array
     {
         $hours = $location->days[0]->hours;
@@ -107,12 +139,24 @@ class WeatherApiHelper
         return $todayHourly;
     }
 
-    // Helpers
+
+    /***********
+     * Helpers *
+     ***********/
+
+    /**
+     * @param $temp
+     * @return float|int
+     */
     function fahrenheitToCelius($temp): float|int
     {
         return floor(5/9*($temp-32));
     }
 
+    /**
+     * @param $deg
+     * @return array|string
+     */
     function windCardinal($deg): array|string
     {
         // Default to show wind direction in degrees
@@ -144,5 +188,4 @@ class WeatherApiHelper
         }
         return $cardinal;
     }
-
 }
