@@ -86,6 +86,11 @@ body {
   @include responsive($ipad-mini-8-inch) {
     width: 600px;
     padding: 50px;
+    justify-content: left;
+    height: 140vh;
+    .section-label {
+      margin-top: 8%;
+    }
   }
 }
 
@@ -170,6 +175,9 @@ body {
     color: $text-grey;
     font-size: 16px;
     margin: 0;
+    @include responsive($ipad-mini-8-inch) {
+      font-size: 18px;
+    }
   }
   .data-label-bold {
     font-size: 95%;
@@ -180,6 +188,9 @@ body {
     font-size: 180%;
     font-weight: bold;
     margin: 0;
+    @include responsive($ipad-mini-8-inch) {
+      font-size: 210%;
+    }
   }
   .data-display-large {
     font-size: 230%;
@@ -225,6 +236,9 @@ body {
       }
     }
   }
+  @include responsive($ipad-mini-8-inch) {
+    margin-bottom: 2%;
+  }
 }
 
 .three-day-outlook {
@@ -243,12 +257,23 @@ body {
         width: 23%;
         height: 23%;
         margin-right: 15%;
+        @include responsive($ipad-mini-8-inch) {
+          width: 18%;
+          height: 18%;
+          margin-right: 8%;
+        }
       }
       .day-outlook-temp-data {
         display: flex;
         .min-temp {
           margin-right: 24%;
         }
+      }
+    }
+    @include responsive($ipad-mini-8-inch) {
+      padding: 30px;
+      .day-outlook-data {
+        margin-top: 3%;
       }
     }
   }
@@ -282,6 +307,20 @@ body {
       .data-display-x-small-black {
         font-size: 65%;
         font-weight: bold;
+      }
+    }
+    @include responsive($ipad-mini-8-inch) {
+      .one-hour-data {
+        .data-display-x-small-grey {
+          font-size: 85%;
+          margin-bottom: 14%;
+        }
+        .one-hour-icon {
+
+        }
+        .data-display-x-small-black {
+          font-size: 95%;
+        }
       }
     }
   }
