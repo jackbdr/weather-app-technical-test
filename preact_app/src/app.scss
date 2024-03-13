@@ -75,7 +75,6 @@ body {
   @include responsive($laptop) {
     height: fit-content;
     width: 1000px;
-    //justify-content: space-between;
     .section-label {
       margin-top: 3%;
     }
@@ -224,6 +223,9 @@ Common Data container
   .current-weather-icon {
     height: 57px;
     margin-right: 20px;
+    @include responsive($laptop) {
+      height: 45px;
+    }
   }
   @include responsive($ipad-mini-8-inch) {
     .data-display-sun {
@@ -364,11 +366,12 @@ Today's forecast hour by hour
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 0 6% 6% 6%;
+      margin: 0 6% 3% 6%;
       .data-display-x-small-grey {
         color: $text-grey;
         font-size: 60%;
         font-weight: bold;
+        margin-top: 0;
         margin-bottom: 8%;
       }
       .one-hour-icon {
@@ -396,17 +399,18 @@ Today's forecast hour by hour
     margin-bottom: 0;
     .twenty-four-hours-data {
       .one-hour-data {
-        margin: 0 3% 0 3%;
+        margin: 0 3% 0.5% 3%;
         .data-display-x-small-grey {
-          font-size: 14px;
+          font-size: 10px;
           margin-bottom: 14%;
         }
         .data-display-x-small-black {
-          font-size: 16px;
+          margin-top: 10px;
+          font-size: 12px;
         }
         .one-hour-icon {
-          width: 30px;
-          height: 30px;
+          width: 40px;
+          height: 40px;
         }
       }
     }
