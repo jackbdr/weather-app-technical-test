@@ -1,7 +1,7 @@
 Hi there,
 
 Thank you for this! Being used to Laravel, I have enjoyed getting to know Symfony... I like it! 
-Also, I hadn't heard of Preact before but I thought it worked well for this task. I thought React seemed a bit overkill.
+Also, I hadn't heard of Preact before but I thought it worked well for this task. I thought React or something similar seemed a bit overkill and had contemplated using vanilla JS, but Preact seemed like a good compromise.
 
 To run the application please run the following commands from the root directory:
 ```
@@ -15,12 +15,20 @@ cd preact_app
 npm install
 npm run dev
 ```
+I realise I have assumed you are on a linux based system and have the Symfony cli installed, I hope that's okay.
 
 You should then be able to access the preact_app at "http://127.0.0.1:5173/".
 
-I'd be really interested to hear what your thoughts about my submission are and to hear about in what other ways it could have been completed would be very interesting.
+To test scalability, add cities to the array on line 29 of technical-test-jack-robinson/src/Helper/WeatherApiHelper.php.
+
+I'm looking forward to hopefully speaking. I'd be really interested to hear your thoughts on my submission.
 
 Thank you!
+
+Notes:
+- Ideally I will find time to better organise my scss into components. Also, sort out my use of mixins which is chaotic at the moment.
+- I considered automatically refreshing the page every 15 mins or so but I decided against it as I didn't want to accidentally leave it running over night and run out of API requests.
+- I've noticed that safari doesn't like a "justify-content: end" on the laptop view buttons which I haven't fixed yet.
 
 # Weather App Technical Test
 
