@@ -10,37 +10,11 @@ $button-inactive: #E8E8E8;
 $box-shadow: rgba(140, 120, 120, 0.2) 0px 7px 29px 0px;
 
 /*
-* Variables for breakpoints
+* Breakpoints
 */
 $ipad-mini-8-inch: 744px;
 $laptop: 1024px;
 $macbook-pro-14-inch: 1512px;
-
-///*
-//* Map for breakpoints
-//*/
-//$breakpoints: (
-//        "medium": (
-//                min-width: $ipad-mini-8-inch,
-//        ),
-//        "large": (
-//                min-width: $laptop,
-//        ),
-//        "x-large": (
-//                min-width: $macbook-pro-14-inch,
-//        ),
-//);
-
-/*
- * Mixins
- */
-//@mixin responsive($size) {
-//  $query: map-get($breakpoints, $size);
-//
-//  @media #{$query} {
-//    @content;
-//  }
-//}
 
 @mixin responsive($query) {
   @media ( min-width: $query ) {
@@ -73,6 +47,9 @@ body {
 
 #app {
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .site-container {
@@ -90,6 +67,14 @@ body {
     height: 140vh;
     .section-label {
       margin-top: 8%;
+    }
+  }
+  @include responsive($laptop) {
+    height: fit-content;
+    width: 1000px;
+    //justify-content: space-between;
+    .section-label {
+      margin-top: 3%;
     }
   }
 }
@@ -114,6 +99,10 @@ body {
         height: 50px;
         margin-right: 10px;
       }
+      @include responsive($laptop) {
+        width: 40px;
+        height: 40px;
+      }
     }
     .title {
       font-size: 145%;
@@ -121,6 +110,9 @@ body {
       margin: 0 0 0 8px;
       @include responsive($ipad-mini-8-inch) {
         font-size: 200%;
+      }
+      @include responsive($laptop) {
+        font-size: 170%;
       }
     }
     @include responsive($ipad-mini-8-inch) {
@@ -145,6 +137,10 @@ body {
         font-size: 110%;
         margin: 0 3%;
       }
+      @include responsive($laptop) {
+        width: 20%;
+        font-size: 100%;
+      }
     }
     .city-button-selected {
       color: white;
@@ -159,6 +155,13 @@ body {
       .city-button:first-child {
         margin: 0;
       }
+    }
+  }
+  @include responsive($laptop) {
+    flex-direction: row;
+    .button-group {
+      margin-top: 0;
+      justify-content: end;
     }
   }
 }
@@ -178,11 +181,17 @@ body {
     @include responsive($ipad-mini-8-inch) {
       font-size: 18px;
     }
+    @include responsive($laptop) {
+      font-size: 14px;
+    }
   }
   .data-label-bold {
     font-size: 95%;
     font-weight: bold;
     margin: 0;
+    @include responsive($laptop) {
+      font-size: 80%;
+    }
   }
   .data-display-medium {
     font-size: 180%;
@@ -191,11 +200,18 @@ body {
     @include responsive($ipad-mini-8-inch) {
       font-size: 210%;
     }
+    @include responsive($laptop) {
+      font-size: 160%;
+    }
   }
   .data-display-large {
     font-size: 230%;
     font-weight: bold;
     margin: 0;
+    @include responsive($laptop) {
+      font-size: 190%;
+      white-space: nowrap;
+    }
   }
   .current-weather-icon {
     height: 57px;
@@ -221,9 +237,10 @@ body {
     }
     @include responsive($ipad-mini-8-inch) {
       display: grid;
-      grid-template-columns: auto auto;
+      grid-template-columns: 50% 50%;
       .label-data {
         order: 1;
+        width: 100%;
       }
       .wind {
         order: 2;
@@ -238,6 +255,23 @@ body {
   }
   @include responsive($ipad-mini-8-inch) {
     margin-bottom: 2%;
+  }
+  @include responsive($laptop) {
+    margin-bottom: 0;
+    .current-weather-data {
+      display: flex;
+      flex-direction: row;
+      padding: 35px 50px;
+      .wind {
+        order: 3;
+      }
+      .rain {
+        order: 2;
+      }
+      .sunrise-sunset {
+        order: 4;
+      }
+    }
   }
 }
 
@@ -268,6 +302,14 @@ body {
         .min-temp {
           margin-right: 24%;
         }
+        @include responsive($laptop) {
+          .min-temp {
+           width: 80px;
+          }
+          .max-temp {
+            width: 80px;
+          }
+        }
       }
     }
     @include responsive($ipad-mini-8-inch) {
@@ -280,12 +322,24 @@ body {
   .day-outlook:not(:last-child) {
     margin-bottom: 6%;
   }
+  @include responsive($laptop) {
+    margin-bottom: 0;
+    .three-days-container {
+      display: flex;
+      justify-content: space-between;
+      .day-outlook {
+        width: 25%;
+      }
+      .day-outlook:not(:last-child) {
+        margin-bottom: 0;
+      }
+    }
+  }
 }
 
 .twenty-four-hours {
   width: 100%;
   margin-bottom: 8%;
-
   .twenty-four-hours-data {
     display: flex;
     overflow-x: scroll;
@@ -312,14 +366,30 @@ body {
     @include responsive($ipad-mini-8-inch) {
       .one-hour-data {
         .data-display-x-small-grey {
-          font-size: 85%;
+          font-size: 14px;
           margin-bottom: 14%;
         }
-        .one-hour-icon {
-
+        .data-display-x-small-black {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  @include responsive($laptop) {
+    margin-bottom: 0;
+    .twenty-four-hours-data {
+      .one-hour-data {
+        margin: 0 3% 0 3%;
+        .data-display-x-small-grey {
+          font-size: 14px;
+          margin-bottom: 14%;
         }
         .data-display-x-small-black {
-          font-size: 95%;
+          font-size: 16px;
+        }
+        .one-hour-icon {
+          width: 30px;
+          height: 30px;
         }
       }
     }
