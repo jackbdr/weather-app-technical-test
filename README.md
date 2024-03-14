@@ -1,3 +1,5 @@
+# Submission
+
 Hi there,
 
 Thank you for this! Being used to Laravel, I have enjoyed getting to know Symfony... I like it! 
@@ -19,7 +21,7 @@ I realise I have assumed you are on a linux based system and have the Symfony cl
 
 You should then be able to access the preact_app at "http://127.0.0.1:5173/".
 
-To test scalability, add cities to the array on line 29 of technical-test-jack-robinson/src/Helper/WeatherApiHelper.php.
+To test scalability, add cities to the array on line 29 of technical-test-jack-robinson/src/Helper/WeatherApiHelper.php. 
 
 I'm looking forward to hopefully speaking. I'd be really interested to hear your thoughts on my submission.
 
@@ -29,6 +31,7 @@ Notes:
 - Ideally I will find time to better organise my scss into components. Also, reorganise my use of mixins to be clearer and easier to follow.
 - I considered automatically refreshing the page every 15 mins or so but I decided against it as I didn't want to accidentally leave it running over night and run out of API requests.
 - I've noticed that Safari doesn't like a "justify-content: end" on the laptop view buttons which I haven't fixed yet. Chrome and Firefox okay though.
+- The mobile view quickly starts looking a bit odd when adding more cities, as the buttons start clogging up the screen, but could be easily fixed with dropdown. 
 
 # Weather App Technical Test
 
