@@ -26,7 +26,7 @@ class WeatherApiHelper
     public function getCurrentAnd3DayForecastForAllCities(string $weatherApiKey): string
     {
         // Array of cities which, for scaling, could be formed by pulling cities from a DB
-        $cities = ['London', 'Paris', 'New York'];
+        $cities = ['London', 'New York', 'Paris'];
 
         $citiesForQuery = implode('|', $cities);
 

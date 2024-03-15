@@ -76,7 +76,8 @@ body {
     height: fit-content;
     width: 1000px;
     .section-label {
-      margin-top: 3%;
+      margin-top: 2%;
+      margin-bottom: 1%;
     }
   }
 }
@@ -191,6 +192,7 @@ Common Data container
     }
     @include responsive($laptop) {
       font-size: 14px;
+      margin-bottom: 3%;
     }
   }
   .data-label-bold {
@@ -231,6 +233,19 @@ Common Data container
   @include responsive($ipad-mini-8-inch) {
     .data-display-sun {
       font-size: 140%;
+    }
+  }
+  @include responsive($laptop) {
+    .sunrise-sunset {
+      .data-label {
+        margin-bottom: 1%;
+      }
+      .data-label-sunset {
+        margin-top: 3.5%;
+      }
+      .data-display-sun {
+        font-size: 100%;
+      }
     }
   }
 }
@@ -322,6 +337,7 @@ Three day forecast
         @include responsive($laptop) {
           .min-temp {
            width: 80px;
+           margin: 0 3% 0 6%;
           }
           .max-temp {
             width: 80px;
@@ -346,6 +362,9 @@ Three day forecast
       justify-content: space-between;
       .day-outlook {
         width: 25%;
+        .day-outlook-data {
+          margin-top: 6%;
+        }
       }
       .day-outlook:not(:last-child) {
         margin-bottom: 0;
@@ -398,15 +417,18 @@ Today's forecast hour by hour
   }
   @include responsive($laptop) {
     margin-bottom: 0;
+    .section-label {
+      margin-bottom: 2.5%;
+    }
     .twenty-four-hours-data {
       .one-hour-data {
         margin: 0 3% 0.5% 3%;
         .data-display-x-small-grey {
           font-size: 10px;
-          margin-bottom: 14%;
+          margin-bottom: 30%;
         }
         .data-display-x-small-black {
-          margin-top: 10px;
+          margin-top: 25%;
           font-size: 12px;
         }
         .one-hour-icon {
