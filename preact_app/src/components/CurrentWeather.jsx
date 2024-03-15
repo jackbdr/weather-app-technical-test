@@ -21,9 +21,9 @@ function CurrentWeather(props) {
                     <p className='data-display-large'>{props.windDirection + ' ' + props.windSpeed}</p>
                 </div>
                 <div className='label-data sunrise-sunset'>
-                    <p className='data-label'>Sunrise</p>
+                    <p className='data-label data-label-sunrise'>Sunrise</p>
                     <p className='data-display-sun data-display-large'>{props.sunrise}</p>
-                    <p className='data-label'>Sunset</p>
+                    <p className='data-label data-label-sunset'>Sunset</p>
                     <p className='data-display-sun data-display-large'>{props.sunset}</p>
                 </div>
             </div>
