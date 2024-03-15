@@ -69,7 +69,7 @@ body {
     justify-content: left;
     height: 140vh;
     .section-label {
-      margin-top: 7%;
+      margin-top: 4%;
     }
   }
   @include responsive($laptop) {
@@ -179,7 +179,6 @@ Common Data container
   background-color: white;
   box-shadow: $box-shadow;
   border-radius: 16px;
-
   .label-data:not(:last-child) {
     margin-bottom: 10px;
   }
@@ -189,6 +188,7 @@ Common Data container
     margin: 0;
     @include responsive($ipad-mini-8-inch) {
       font-size: 18px;
+      margin-bottom: 4%;
     }
     @include responsive($laptop) {
       font-size: 14px;
@@ -231,11 +231,25 @@ Common Data container
     }
   }
   @include responsive($ipad-mini-8-inch) {
-    .data-display-sun {
-      font-size: 140%;
+    .rain, .sunrise-sunset {
+      margin-top: 9%;
+    }
+    .sunrise-sunset {
+      .data-label {
+        margin-bottom: 0;
+      }
+      .data-label-sunset {
+        margin-top: 3%;
+      }
+      .data-display-sun {
+        font-size: 125%;
+      }
     }
   }
   @include responsive($laptop) {
+    .rain, .sunrise-sunset {
+      margin-top: 0;
+    }
     .sunrise-sunset {
       .data-label {
         margin-bottom: 1%;
@@ -259,7 +273,7 @@ Current weather
   .current-weather-data {
     display: flex;
     flex-direction: column;
-    padding: 35px 38px;
+    padding: 40px;
     .temp-data {
       display: flex;
       align-items: center;
