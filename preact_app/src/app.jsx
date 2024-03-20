@@ -62,7 +62,7 @@ export function App() {
 		<>
 			{error && <p className="text-danger">{error}</p>}
 			{loading && <p>Forecasting...</p>}
-			{ (!loading && !error) &&
+			{ ((!loading && !error) && (locationCurrentData && locationThreeDayOutlookData && locationTodayHourlyData)) &&
 				<div className='site-container'>
 					<Header city={city} cities={cities} setCity={setCity} handleCityChange={handleCityChange} />
 					<CurrentWeather {...locationCurrentData} city={city} />
