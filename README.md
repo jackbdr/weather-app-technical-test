@@ -1,3 +1,5 @@
+Unfortunately this role was offered to someone else as they were a week ahead in the process and had no notice period to run down, but I received positive feedback! 
+
 # Submission
 
 Hi there,
