@@ -24,11 +24,11 @@ npm install
 ```
 npm run dev
 ```
-(I realise I have assumed you have the Symfony cli installed, I hope that's okay)
+(I realise I have assumed you have the Symfony cli installed. If you don't, please download from https://symfony.com/download. I hope that's okay.)
 
 You should then be able to access the preact_app at "http://127.0.0.1:5173/".
 
-To test scalability, add cities to the array on line 29 of `technical-test-jack-robinson/src/Helper/WeatherApiHelper.php`. 
+To test scalability, add cities to the array on line 29 of `weather-app-technical-test/src/Helper/WeatherApiHelper.php`. 
 
 I'm looking forward to hopefully speaking. I'd be really interested to hear your thoughts on my submission.
 
