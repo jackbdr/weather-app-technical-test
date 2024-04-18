@@ -40,7 +40,7 @@ Notes:
 - Ideally I will find time to better organise my scss into components. Also, reorganise my use of mixins to be clearer and easier to follow.
 - I considered automatically refreshing the page every 15 mins or so but I decided against it as I didn't want to accidentally leave it running over night and run out of API requests.
 - I've noticed that Safari doesn't like a "justify-content: end" on the laptop view buttons which I haven't fixed yet. Chrome and Firefox okay though.
-- The mobile view quickly starts looking a bit odd when adding more cities, as the buttons start clogging up the screen, but could be easily fixed with dropdown. 
+- The mobile view quickly starts looking a bit odd when adding more cities, as the buttons clog up the screen, but this could be easily fixed with dropdown. 
 
 # Weather App Technical Test
 
