@@ -32,7 +32,7 @@ You should then be able to access the preact_app at "http://127.0.0.1:5173/".
 
 To test scalability, add cities to the array on line 29 of `weather-app-technical-test/src/Helper/WeatherApiHelper.php`. 
 
-I'm looking forward to hopefully speaking. I'd be really interested to hear your thoughts on my submission.
+I'm looking forward to speaking. I'd be really interested to hear your thoughts on my submission.
 
 Thank you!
 
